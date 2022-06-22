@@ -1,0 +1,9 @@
+requires task.selection
+dim i = 1
+dim qt = ASCII(34)
+while i <= task.selection.count
+dim item = task.selection[i]
+item.boughtout = false
+item.update()
+i = i + 1
+end while

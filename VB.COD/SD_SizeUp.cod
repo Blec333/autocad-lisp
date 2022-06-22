@@ -1,0 +1,78 @@
+requires task.selection
+dim i = 1
+while i <= task.selection.count
+dim item = task.selection[i]
+rem THIS INCREMENTS UP
+if item.hasproduct then
+dim entry
+dim desc=item.description
+for entry=1 to item.product.entries
+if desc=item.product.entry[entry].name then
+dim index=entry+0
+if entry < item.product.entries then
+dim entry=item.product.entries
+item.description=item.product.entry[index].name
+endif
+endif
+next
+item.update()
+elseif item.hasproduct=false then
+if item.dim[1].value <= 11 and item.cid <> 818 then
+if (item.cid = 40 or item.cid = 522 or item.cid = 61) or (wildcard(item.filename,"*Flat Strap (Round)") = 1) or (wildcard(item.filename,"*Wrap Round") = 1) or (wildcard(item.filename,"*round floor mount") = 1) or item.cid = 1112 then
+item.dim[1].value = item.dim[1].value + 1
+item.update()
+elseif (item.cid = 866 or item.cid = 802 or item.cid = 30 or item.cid = 382 or item.cid = 1 or item.cid = 505 or item.cid = 166) or (wildcard(item.filename,"*rectangular floor mount") = 1) or (wildcard(item.filename,"*Flat Strap (Rectangle)") = 1) or (wildcard(item.filename,"*rectangular bearer") = 1) then
+item.dim[1].value = item.dim[1].value + 1
+item.dim[2].value = item.dim[2].value + 1
+item.update()
+elseif item.cid = 20 or item.cid = 17 or item.cid = 8 then
+item.dim[1].value = item.dim[1].value + 1
+item.dim[2].value = item.dim[2].value + 1
+item.dim[3].value = item.dim[3].value + 1
+item.update()
+elseif item.cid = 330 or item.cid = 2 then
+item.dim[1].value = item.dim[1].value + 1
+item.dim[2].value = item.dim[2].value + 1
+item.dim[3].value = item.dim[3].value + 1
+item.dim[4].value = item.dim[4].value + 1
+end if
+elseif item.dim[1].value > 11 and item.cid <> 818 then
+if (item.cid = 40 or item.cid = 522 or item.cid = 61) or (wildcard(item.filename,"*Flat Strap (Round)") = 1) or (wildcard(item.filename,"*Wrap Round") = 1) or (wildcard(item.filename,"*round floor mount") = 1) or item.cid = 1112 then
+item.dim[1].value = item.dim[1].value + 2
+item.update()
+elseif (item.cid = 866 or item.cid = 802 or item.cid = 30 or item.cid = 382 or item.cid = 1 or item.cid = 505 or item.cid = 166) or (wildcard(item.filename,"*rectangular floor mount") = 1) or (wildcard(item.filename,"*Flat Strap (Rectangle)") = 1) or (wildcard(item.filename,"*rectangular bearer") = 1) then
+item.dim[1].value = item.dim[1].value + 2
+item.dim[2].value = item.dim[2].value + 2
+item.update()
+elseif item.cid = 20 or item.cid = 17 or item.cid = 8 then
+item.dim[1].value = item.dim[1].value + 2
+item.dim[2].value = item.dim[2].value + 2
+if (wildcard(item.dim[3].value,"Equal") = 1) then
+item.dim[3].value = item.dim[1].value
+item.update()
+elseif (wildcard(item.dim[3].value,"Equal") = 0) then
+item.dim[3].value = item.dim[3].value + 2
+item.update()
+end if
+elseif item.cid = 330 or item.cid = 2 then
+item.dim[1].value = item.dim[1].value + 2
+item.dim[2].value = item.dim[2].value + 2
+item.dim[3].value = item.dim[3].value + 2
+if (wildcard(item.dim[3].value,"Equal") = 1) then
+item.dim[4].value = item.dim[2].value
+item.update()
+elseif (wildcard(item.dim[3].value,"Equal") = 0) then
+item.dim[4].value = item.dim[4].value + 2
+item.update()
+end if
+item.update()
+end if
+item.update()
+elseif item.cid = 818 then
+item.dim["Branch Width #1"].value = item.dim["Branch Width #1"].value + 2
+item.dim["Branch Depth #1"].value = item.dim["Branch Depth #1"].value + 2
+end if
+item.update()
+end if
+i = i + 1
+endwhile

@@ -1,0 +1,21 @@
+dim qt = ASCII(34)
+dim conNum = 1
+dim conName = "1 Flg Out"
+dim conGrp = "Duct - Flanged"
+function connFind(cnum,cgrp,cnam)
+dim count = 1
+while item.connector[cnum].group <> cgrp
+item.connector[cnum].value = count
+count = count + 1
+end while
+while item.connector[cnum].value <> cnam
+item.connector[cnum].value = count
+count = count + 1
+end while
+end function
+item.connector[conNum].value = conName
+item.connector[conNum].locked = true
+if item.connector[conNum].group <> conGrp then
+connFind(conNum,conGrp,conName)
+end if
+item.update()
