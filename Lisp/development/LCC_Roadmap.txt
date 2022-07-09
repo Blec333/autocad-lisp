@@ -1,0 +1,74 @@
+[PROGRAMMATICALLY DEDUCED INFORMATION]
+Display Directories
+Directory Links
+
+[EDIT CONFIGURATION]
+:Backup="./Backup"
+:Database="./Database"
+:Project="./Project"
+:Reports="./Reports"
+:Images"./Images"
+:Items"./Items"
+:Scripts="./Scripts"
+:Profiles="./Profiles"
+:Download="./Download"
+:Common="./Common"
+:Textures="./Textures"
+:Main="./"
+
+
+[WINDOWS REGISTRY PATHS]
+:AutodeskRegistryPath="HKEY_CURRENT_USER\\software\\Autodesk\\"
+:ACADRegistryPath="HKEY_CURRENT_USER\\software\\Autodesk\\AutoCAD\\"
+
+
+[FILE NAMES]
+:masterLSPName="LCC"
+:debugFileName="Debug File"
+:block_StampName="_STAMPS"
+:block_TagName="_TAG"
+:block_DiamName="_DIAM"
+:block_ElevName="_ELEV"
+:block_SizeName="_SIZE"
+:block_BlockoutTextName="_BLOCKOUT_TEXT"
+:block_TitleBlockName="_TITLE_BLOCK"
+:customACADTemplateName="ACAD Working Template"
+:standardButtonTemplateName="Standard Button Template_TemplateData"
+:weldedButtonTemplateName="Standard Welded Systems Button Template_TemplateData"
+:undergroundButtonTemplateName="AOR-03) Standard Underground System Button Template_TemplateData"
+:InslabButtonTemplateName="AOR-03) Standard Inslab Button Template_TemplateData"
+
+
+[ITM FILES]
+:Grille&Louver="Q:\\Detailing\\Software Management\\Software\\Program Data\\AutoCAD\\Custom Programs\\01) Standard Button Template\\06) BOUGHT\\Grille&Louver.itm"
+
+
+[HARDCODED USER DEFINED DIRECTORIES]
+:dbDrive="Q"
+:defaultConfig="./"
+:PMShared=":\\PM Shared\\"
+:PMSharedDisplay=(vl-string-translate "\\" "/" PMShared)
+:PMSharedDisplayV2=" pmshared"
+:publicDirectory="C:\\Users\\Public\\Documents\\Autodesk"
+:customFontsDirectory="Q:\\Detailing\\Software Management\\Software\\Program Data\\AutoCAD\\Custom Fonts"
+:customPlotstylesDirectory="Q:\\Detailing\\Software Management\\Software\\Program Data\\AutoCAD\\Custom Plotstyles"
+:customACADTemplateDirectory="Q:\\Detailing\\Software Management\\Software\\Program Data\\AutoCAD\\Templates"
+:customACADTemplateLink="Q:\\Detailing\\Software Management\\Software\\Program Data\\AutoCAD\\Templates\\ACAD Working Template.dwt"
+:databaseFilesDirectory="Q:\\Detailing\\Software Management\\Software\\Program Data\\AutoCAD\\Database Files"
+:ACADDocDirectory="Q:\\Detailing\\Software Management\\Software\\Program Data\\AutoCAD\\Custom Programs\\ACADdoc"
+:customCODsDirectory="Q:\\Detailing\\Software Management\\Software\\Program Data\\AutoCAD\\Custom Programs\\CODs"
+:customLSPsDirectory="Q:\\Detailing\\Software Management\\Software\\Program Data\\AutoCAD\\Custom Programs\\LSPs"
+:debugFileDirectory="Q:\\Detailing\\Software Management\\Software\\Program Data\\AutoCAD\\Custom Programs\\CODs\\Debug File"
+:customBlocksDirectory="Q:\\Detailing\\Software Management\\Software\\Program Data\\AutoCAD\\Custom Blocks"
+:standardButtonTemplateDirectory="Q:\\Detailing\\Software Management\\Software\\Program Data\\AutoCAD\\Custom Programs\\01) Standard Button Template"
+:weldedButtonTemplateDirectory="Q:\\Detailing\\Software Management\\Software\\Program Data\\AutoCAD\\Custom Programs\\02) Welded Button Template"
+:undergroundButtonTemplateDirectory="Q:\\Detailing\\Software Management\\Software\\Program Data\\AutoCAD\\Custom Programs\\03) Underground Button Template")
+:InslabButtonTemplateDirectory="Q:\\Detailing\\Software Management\\Software\\Program Data\\AutoCAD\\Custom Programs\\Inslab Button Template")
+:otherButtonsDirectory="Q:\\Detailing\\Software Management\\Software\\Program Data\\AutoCAD\\Custom Programs "\\" "Other")
+
+[PARSED VARIABLES]
+:excel="(progn(STRING_SPLIT "\"" (vl-registry-read "HKEY_CLASSES_ROOT\\Excel.Workspace\\shell\\New\\command"))(setq excel nth0))"
+:jobDirectory=(progn(STRING_SPLIT "/" dwgDirectory)(if(and(not(= nth0 nil))(not(= nth1 nil)))(setq jobDirectory=nth0 "\\" nth1 "\\"))(if(and(not(= nth0 nil))(= nth1 nil))(setq jobDirectory=nth0 "\\"))(if(and(= nth0 nil)(= nth1 nil))(setq jobDirectory "C:\\")))))
+:dwgServerLocation=(progn(STRING_SPLIT "/" dwgDirectory)(setq dwgServerLocation nth0))
+:Job#=(if(and(not(= nth1 nil))(or(wcmatch nth1 "*####-*")(wcmatch nth1 "*###-*")(wcmatch nth1 "*#####-*")))
+
