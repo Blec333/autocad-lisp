@@ -1,0 +1,65 @@
+dim i = 1
+dim qt = ASCII(34)
+select item.cid
+case 838,902
+rem Floor Support =====================================================================================================
+if (wildcard(item.filename,"double rectangular floor mount") = 1) and (wildcard(item.option[1].value, "Double Profile Bearer 2") = 1) then
+dim depth = item.dim[2].value
+dim bottomElevation = item.endlocation(1,"btm")
+dim floorLevel = item.level("floor")
+dim legLength = ((bottomElevation-floorLevel)+depth)
+item.option[21].value = 0.5
+item.dim[6].value = (0 - legLength)
+item.dim[7].value = (0 - depth)
+elseif (wildcard(item.filename,"single rectangular floor mount") = 1) and (wildcard(item.option[1].value, "Profiled Bearer") = 1) then
+dim depth = item.dim[2].value
+dim bottomElevation = item.endlocation(1,"btm")
+dim floorLevel = item.level("floor")
+dim legLength = ((bottomElevation-floorLevel)+depth)
+item.option[21].value = 0 - 0.5
+item.dim[6].value = (0 - legLength)
+item.dim[7].value = (0 - 6)
+elseif (wildcard(item.filename,"*rectangular floor mount") = 1) and (wildcard(item.option[1].value, "Flat Strap Hanger") = 1) then
+dim depth = item.dim[2].value
+dim bottomElevation = item.endlocation(1,"btm")
+dim floorLevel = item.level("floor")
+dim legLength = (bottomElevation-floorLevel)
+item.option[12].value = 0.5
+item.dim[3].value = (0 - legLength)
+elseif (wildcard(item.filename,"*round floor mount") = 1) then
+dim bottomElevation = item.endlocation(1,"btm") + (item.dim[1].value / 2)
+dim floorLevel = item.level("floor")
+dim legLength = (bottomElevation-floorLevel)
+item.dim[4].value = 0
+item.dim[4].value = (0-1)
+item.dim[3].value = 0
+item.dim[3].value = ((item.dim[3].value - (item.dim[1].value / 2)) - legLength)
+rem Hanger Support ====================================================================================================
+elseif (wildcard(item.service,"*trimble*") = 0) and (wildcard(item.servicetype,"*hanger") = 1) and (wildcard(item.filename,"*Wrap Round") = 1) then
+dim topElevation = item.endlocation(1,"btm") + item.dim[1].value
+dim soffitLevel = item.level("soffit")
+dim hangLength = (soffitLevel-topElevation)
+item.dim[2].value = hangLength
+elseif (wildcard(item.service,"*trimble*") = 0) and (wildcard(item.servicetype,"*hanger") = 1) and (wildcard(item.filename,"*Flat Strap (Round)") = 1) then
+dim topElevation = item.endlocation(1,"btm") + item.dim[1].value
+dim soffitLevel = item.level("soffit")
+dim hangLength = (soffitLevel-topElevation)
+item.dim[2].value = hangLength
+elseif (wildcard(item.service,"*trimble*") = 0) and (wildcard(item.servicetype,"*hanger") = 1) and (wildcard(item.filename,"*Flat Strap (Rectangle)") = 1) then
+dim topElevation = item.endlocation(1,"top")
+dim soffitLevel = item.level("soffit")
+dim hangLength = (soffitLevel-topElevation)
+item.dim[3].value = hangLength
+elseif (wildcard(item.service,"*trimble*") = 0) and (wildcard(item.servicetype,"*hanger") = 1) and (wildcard(item.filename,"*rectangular bearer") = 1) then
+dim topElevation = item.endlocation(1,"top")
+dim soffitLevel = item.level("soffit")
+dim hangLength = (soffitLevel-topElevation)
+item.dim[6].value = hangLength
+rem Seismic Included Here =============================================================================================
+elseif (wildcard(item.servicetype,"*Seismic*") = 1) and (wildcard(item.filename,"*Seismic*") = 1) then
+dim topElevation = item.endlocation(1,"top")
+dim soffitLevel = item.level("soffit")
+dim hangLength = (soffitLevel-topElevation)
+item.dim["Distance To Deck"].value = hangLength
+end if
+end select

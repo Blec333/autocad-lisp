@@ -1,0 +1,47 @@
+requires task.selection
+dim i = 1
+dim qt = ASCII(34)
+while i <= task.selection.count
+dim item = task.selection[i]
+if item.cid = 40 then
+dim c1Num = 1
+dim c1Name = "Raw"
+dim c1Grp = "Round Duct"
+function connFind(cnum,cgrp,cnam)
+dim count = 1
+while item.connector[cnum].group <> cgrp
+item.connector[cnum].value = count
+count = count + 1
+end while
+while item.connector[cnum].value <> cnam
+item.connector[cnum].value = count
+count = count + 1
+end while
+end function
+item.connector[c1Num].value = c1Name
+item.connector[c1Num].locked = true
+if item.connector[c1Num].group <> c1Grp then
+connFind(c1Num,c1Grp,c1Name)
+end if
+dim c2Num = 2
+dim c2Name = "Raw"
+dim c2Grp = "Round Duct"
+function connFind(cnum,cgrp,cnam)
+dim count = 1
+while item.connector[cnum].group <> cgrp
+item.connector[cnum].value = count
+count = count + 1
+end while
+while item.connector[cnum].value <> cnam
+item.connector[cnum].value = count
+count = count + 1
+end while
+end function
+item.connector[c2Num].value = c1Name
+item.connector[c2Num].locked = true
+if item.connector[c2Num].group <> c1Grp then
+connFind(c2Num,c2Grp,c2Name)
+end if
+end if
+i = i + 1
+end while

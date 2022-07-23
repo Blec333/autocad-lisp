@@ -1,0 +1,115 @@
+  dim insGauge = item.insulation.gauge
+  item.alias = "InsidePattern"
+  item.insulation.status = "OFF"
+rem Reduce Size and Adjust Length for Inside Pattern
+    if item.cid = 40 or item.cid = 522 then
+  dim length = item.dim["Length"].numvalue - 0.25
+    item.dim[1].value = item.dim[1].value - (insGauge * 2)
+  item.connector[1].value = "None"
+  item.connector[1].locked = true
+  item.connector[2].value = "None"
+  item.connector[2].locked = true
+  item.dim["Length"].value = length
+  item.notes = "Doublewall Inside Pattern"
+  item.update()
+    elseif item.cid = 866 or item.cid = 802 or item.cid = 30 or item.cid = 382 or item.cid = 1 or item.cid = 505 or item.cid = 519 then
+  dim length = item.dim["Length"].numvalue - 0.25
+    item.dim[1].value = item.dim[1].value - (insGauge * 2)
+    item.dim[2].value = item.dim[2].value - (insGauge * 2)
+  item.connector[1].value = "None"
+  item.connector[1].locked = true
+  item.connector[2].value = "None"
+  item.connector[2].locked = true
+  item.dim["Length"].value = length
+  item.notes = "Doublewall Inside Pattern"
+  item.update()
+  elseif item.cid = 20 then
+    item.dim[1].value = item.dim[1].value - (insGauge * 2)
+    item.dim[2].value = item.dim[2].value - (insGauge * 2)
+  if (wildcard(item.dim[3].value,"Equal") = 1) then
+    item.dim[3].value = item.dim[1].value
+  elseif (wildcard(item.dim[3].value,"Equal") = 0) then
+    item.dim[3].value = item.dim[3].value - (insGauge * 2)
+  item.update()
+end if
+  dim cid20Length1 = item.dim[5].value + (insGauge - 0.125)
+  dim cid20Length2 = item.dim[6].value + (insGauge - 0.125)
+  item.connector[1].value = "None"
+  item.connector[1].locked = true
+  item.connector[2].value = "None"
+  item.connector[2].locked = true
+  item.dim[5].value = cid20Length1
+  item.dim[6].value = cid20Length2
+  item.notes = "Doublewall Inside Pattern"
+  item.update()
+  elseif item.cid = 17 then
+    item.dim[1].value = item.dim[1].value - (insGauge * 2)
+    item.dim[2].value = item.dim[2].value - (insGauge * 2)
+  if (wildcard(item.dim[3].value,"Equal") = 1) then
+    item.dim[3].value = item.dim[1].value
+  elseif (wildcard(item.dim[3].value,"Equal") = 0) then
+    item.dim[3].value = item.dim[3].value - (insGauge * 2)
+  item.update()
+end if
+  if (wildcard(item.dim[7].value, "Width") = 1) then
+  dim length = item.dim[1].numvalue + ((insGauge * 2) - 0.25)
+  item.connector[1].value = "None"
+  item.connector[1].locked = true
+  item.connector[2].value = "None"
+  item.connector[2].locked = true
+  item.dim[7].value = length
+  elseif (wildcard(item.dim[7].value, "Half Width") = 1) then
+  dim length = (item.dim[1].numvalue / 2) + ((insGauge * 2) - 0.25)
+  item.connector[1].value = "None"
+  item.connector[1].locked = true
+  item.connector[2].value = "None"
+  item.connector[2].locked = true
+  item.dim[7].value = length
+else
+  dim length = item.dim[7].numvalue + ((insGauge * 2) - 0.25)
+  item.connector[1].value = "None"
+  item.connector[1].locked = true
+  item.connector[2].value = "None"
+  item.connector[2].locked = true
+  item.dim[7].value = length
+end if
+  item.notes = "Doublewall Inside Pattern"
+  item.update()
+  elseif item.cid = 8 then
+  dim length = item.dim["Length"].numvalue - 0.25
+    item.dim[1].value = item.dim[1].value - (insGauge * 2)
+    item.dim[2].value = item.dim[2].value - (insGauge * 2)
+  if (wildcard(item.dim[3].value,"Equal") = 1) then
+    item.dim[3].value = item.dim[1].value
+  elseif (wildcard(item.dim[3].value,"Equal") = 0) then
+    item.dim[3].value = item.dim[3].value - (insGauge * 2)
+  item.update()
+end if
+  item.connector[1].value = "None"
+  item.connector[1].locked = true
+  item.connector[2].value = "None"
+  item.connector[2].locked = true
+  item.dim["Length"].value = length
+  item.notes = "Doublewall Inside Pattern"
+  item.update()
+    elseif item.cid = 330 or item.cid = 2 then
+  dim length = item.dim["Length"].numvalue - 0.25
+    item.dim[1].value = item.dim[1].value - (insGauge * 2)
+    item.dim[2].value = item.dim[2].value - (insGauge * 2)
+    item.dim[3].value = item.dim[3].value - (insGauge * 2)
+  if (wildcard(item.dim[3].value,"Equal") = 1) then
+    item.dim[4].value = item.dim[2].value
+  item.update()
+  elseif (wildcard(item.dim[3].value,"Equal") = 0) then
+    item.dim[4].value = item.dim[4].value - (insGauge * 2)
+  item.update()
+end if
+  item.connector[1].value = "None"
+  item.connector[1].locked = true
+  item.connector[2].value = "None"
+  item.connector[2].locked = true
+  item.dim["Length"].value = length
+  item.notes = "Doublewall Inside Pattern"
+  item.update()
+end if
+  item.update()

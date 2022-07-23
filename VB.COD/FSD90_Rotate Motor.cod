@@ -1,0 +1,6 @@
+if (wildcard(item.dim[1].name,"Width") = 1) and (wildcard(item.dim[2].name,"Depth") = 1) then
+dim oldWidth = item.dim[1].value
+dim oldDepth = item.dim[2].value
+item.dim[1].value = oldDepth
+item.dim[2].value = oldWidth
+end if

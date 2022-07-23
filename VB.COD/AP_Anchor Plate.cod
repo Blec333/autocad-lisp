@@ -1,0 +1,21 @@
+requires task.selection
+dim i = 1
+dim j = 1
+dim qt = ASCII(34)
+if j = 1 then
+dim plate = inputbox("Enter floor support baseplate extension size off post in inches(crop circle to cover area): Enter 0 if not applicable")
+while i <= task.selection.count
+dim item = task.selection[i]
+if (wildcard(item.filename,"double rectangular floor mount") = 1) and (wildcard(item.option[1].value, "Double Profile Bearer 2") = 1) then
+item.option[8].value = plate
+elseif (wildcard(item.filename,"single rectangular floor mount") = 1) and (wildcard(item.option[1].value, "Profiled Bearer") = 1) then
+item.option[9].value = plate
+elseif (wildcard(item.filename,"*rectangular floor mount") = 1) and (wildcard(item.option[1].value, "Flat Strap Hanger") = 1) then
+item.option[8].value = plate
+elseif (wildcard(item.filename,"*round floor mount") = 1) then
+item.option[10].value = plate
+end if
+i = i + 1
+end while
+dim j = 2
+end if

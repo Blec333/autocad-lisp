@@ -1,0 +1,62 @@
+requires task.selection
+dim i = 1
+dim qt = ASCII(34)
+while i <= task.selection.count
+dim item = task.selection[i]
+if (wildcard(item.insulation.material,"Duct Wrap")=1) then
+if (item.insulation.gauge = 1.5) then
+item.insulation.gauge = 2
+elseif (item.insulation.gauge = 2) then
+item.insulation.gauge = 3
+elseif (item.insulation.gauge = 3) then
+item.insulation.gauge = 4
+elseif (item.insulation.gauge = 4) then
+item.insulation.gauge = 1
+elseif (item.insulation.gauge = 1) then
+item.insulation.gauge = 1.5
+end if
+elseif (wildcard(item.insulation.material,"1-1/2 LB")=1) and (item.doublewall = false) then
+if (item.insulation.gauge = 1) then
+item.insulation.gauge = 1.5
+elseif (item.insulation.gauge = 1.5) then
+item.insulation.gauge = 2
+elseif (item.insulation.gauge = 2) then
+item.insulation.gauge = 0.5
+elseif (item.insulation.gauge = 0.5) then
+item.insulation.gauge = 1
+end if
+elseif (wildcard(item.insulation.material,"Fire Barrier Duct Wrap")=1) then
+if (item.insulation.gauge = 2) then
+item.insulation.gauge = 3
+elseif (item.insulation.gauge = 3) then
+item.insulation.gauge = 4
+elseif (item.insulation.gauge = 4) then
+item.insulation.gauge = 5
+elseif (item.insulation.gauge = 5) then
+item.insulation.gauge = 6
+elseif (item.insulation.gauge = 6) then
+item.insulation.gauge = 7
+elseif (item.insulation.gauge = 7) then
+item.insulation.gauge = 8
+elseif (item.insulation.gauge = 8) then
+item.insulation.gauge = 9
+elseif (item.insulation.gauge = 9) then
+item.insulation.gauge = 10
+elseif (item.insulation.gauge = 10) then
+item.insulation.gauge = 2
+end if
+elseif item.doublewall = true then
+if (item.insulation.gauge = 1) then
+item.insulation.gauge = 1.5
+elseif (item.insulation.gauge = 1.5) then
+item.insulation.gauge = 2
+elseif (item.insulation.gauge = 2) then
+item.insulation.gauge = 0.5
+elseif (item.insulation.gauge = 0.5) then
+item.insulation.gauge = 1
+end if
+item.update()
+end if
+item.update()
+i = i + 1
+end while

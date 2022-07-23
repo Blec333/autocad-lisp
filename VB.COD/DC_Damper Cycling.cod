@@ -1,0 +1,506 @@
+requires task.selection
+dim i = 1
+dim qt = ASCII(34)
+while i <= task.selection.count
+dim item = task.selection[i]
+rem~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+function turnOnTapSqRdDamper ()
+dim item = task.selection[i]
+if (((item.cid = 345 or item.cid = 751 or item.cid = 51 or item.cid = 875) and item.dim[2].value <= 12) or (item.cid = 16 and item.dim[1].value <= 12) or (item.cid = 8 and item.dim[3].value <= 12)) then
+if item.dampers = 1 then
+if item.cid = 345 and item.damper[1].value = "NONE" then
+if item.dim[9].locked = false then
+item.dim[9].value = 6
+end if
+item.damper[1].value = "KS7L-l"
+item.damper[1].locked = true
+item.update()
+elseif item.cid = 16 and item.damper[1].value = "NONE" then
+if item.dim[2].locked = false then
+item.dim[2].value = 6
+end if
+item.damper[1].value = "KS7L-l"
+item.damper[1].locked = true
+item.update()
+elseif item.cid = 8 and item.damper[1].value = "NONE" then
+if item.dim[8].locked = false then
+item.dim[8].value = 6
+end if
+item.damper[1].value = "KS7L-l"
+item.damper[1].locked = true
+item.update()
+end if
+elseif item.dampers = 2 then
+if item.cid = 51 and item.damper[2].value = "NONE" then
+if item.dim[2].value >= 4 and item.dim[2].value <= 6 then
+if item.dim[3].locked = false then
+item.dim[3].value = 6
+item.update()
+end if
+elseif item.dim[2].value >= 7 and item.dim[2].value <= 10 then
+if item.dim[3].locked = false then
+item.dim[3].value = 10
+item.update()
+end if
+elseif item.dim[2].value >= 11 and item.dim[2].value <= 12 then
+if item.dim[3].locked = false then
+item.dim[3].value = 12
+item.update()
+end if
+end if
+item.damper[2].value = "KS7L-l"
+item.damper[2].locked = true
+item.update()
+end if
+elseif item.dampers = 3 then
+if item.cid = 875 and item.damper[3].value = "NONE" then
+if item.description = "*saddle*" then
+if item.dim[3].locked = false then
+item.dim[3].value = 6
+end if
+elseif item.description <> "*saddle*" then
+if item.dim[3].locked = false then
+item.dim[3].value = 15
+end if
+end if
+item.damper[3].value = "KS7L-l"
+item.damper[3].locked = true
+item.update()
+elseif item.cid = 751 and item.damper[3].value = "NONE" then
+if item.dim[5].locked = false then
+item.dim[5].value = 6
+end if
+item.damper[3].value = "KS7L-l"
+item.damper[3].locked = true
+item.update()
+end if
+item.update()
+end if
+elseif (((item.cid = 345 or item.cid = 751 or item.cid = 51 or item.cid = 875) and item.dim[2].value > 12) or (item.cid = 16 and item.dim[1].value > 12) or (item.cid = 8 and item.dim[3].value > 12)) then
+if item.dampers = 1 then
+if item.cid = 345 and item.damper[1].value = "NONE" then
+if item.dim[9].locked = false then
+item.dim[9].value = 6
+end if
+item.damper[1].value = "3/8"+qt+" ROD-L"
+item.damper[1].locked = true
+elseif item.cid = 16 and item.damper[1].value = "NONE" then
+if item.dim[2].locked = false then
+item.dim[2].value = 6
+end if
+item.damper[1].value = "3/8"+qt+" ROD-L"
+item.damper[1].locked = true
+item.update()
+elseif item.cid = 8 and item.damper[1].value = "NONE" then
+if item.dim[8].locked = false then
+item.dim[8].value = 6
+end if
+item.damper[1].value = "3/8"+qt+" ROD-L"
+item.damper[1].locked = true
+item.update()
+end if
+elseif item.dampers = 2 then
+if item.cid = 51 and item.damper[2].value = "NONE" then
+if item.dim[2].value > 12 and item.dim[2].value <= 14 then
+if item.dim[3].locked = false then
+item.dim[3].value = 12
+item.update()
+end if
+elseif item.dim[2].value >= 16 and item.dim[2].value <= 18 then
+if item.dim[3].locked = false then
+item.dim[3].value = 15
+item.update()
+end if
+elseif item.dim[2].value >= 20 then
+if item.dim[3].locked = false then
+item.dim[3].value = 20
+item.update()
+end if
+end if
+item.damper[2].value = "3/8"+qt+" ROD-L"
+item.damper[2].locked = true
+end if
+elseif item.dampers = 3 then
+if item.cid = 875 and item.damper[3].value = "NONE" then
+if item.description = "*saddle*" then
+if item.dim[3].locked = false then
+item.dim[3].value = 6
+end if
+elseif item.description <> "*saddle*" then
+if item.dim[3].locked = false then
+item.dim[3].value = 15
+end if
+end if
+item.damper[3].value = "3/8"+qt+" ROD-L"
+item.damper[3].locked = true
+item.update()
+elseif item.cid = 751 and item.damper[3].value = "NONE" then
+if item.dim[9].locked = false then
+item.dim[5].value = 6
+end if
+item.damper[3].value = "3/8"+qt+" ROD-L"
+item.damper[3].locked = true
+item.update()
+end if
+item.update()
+end if
+item.update()
+end if
+end function
+function turnOffTapSqRdDamper ()
+dim item = task.selection[i]
+if item.dampers = 1 then
+if item.cid = 345 and item.damper[1].value <> "NONE" then
+if item.dim[9].locked = false then
+item.dim[9].value = 0
+end if
+item.damper[1].value = "NONE"
+item.damper[1].locked = true
+item.update()
+elseif item.cid = 16 and item.damper[1].value <> "NONE" then
+if item.dim[2].locked = false then
+item.dim[2].value = 6
+end if
+item.damper[1].value = "NONE"
+item.damper[1].locked = true
+item.update()
+elseif item.cid = 8 and item.damper[1].value <> "NONE" then
+if item.dim[8].locked = false then
+item.dim[8].value = 3
+end if
+item.damper[1].value = "NONE"
+item.damper[1].locked = true
+item.update()
+end if
+elseif item.dampers = 2 then
+if item.cid = 51 and item.damper[2].value <> "NONE" then
+if item.dim[3].locked = false then
+item.dim[3].value = 3.75
+end if
+item.damper[2].value = "NONE"
+item.damper[2].locked = true
+item.update()
+end if
+elseif item.dampers = 3 then
+if item.cid = 875 and item.damper[3].value <> "NONE" then
+if item.dim[3].locked = false then
+item.dim[3].value = 6
+end if
+item.damper[3].value = "NONE"
+item.damper[3].locked = true
+item.update()
+elseif item.cid = 751 and item.damper[3].value <> "NONE" then
+if item.dim[5].locked = false then
+item.dim[5].value = 0
+end if
+item.damper[3].value = "NONE"
+item.damper[3].locked = true
+item.update()
+end if
+item.update()
+end if
+end function
+rem~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+function turnOnD2 ()
+dim item = task.selection[i]
+if (((item.cid = 53 or item.cid = 54 or item.cid = 345 or item.cid = 751 or item.cid = 51 or item.cid = 875) and item.dim[2].value <= 12) or ((item.cid = 807 or item.cid = 812 or item.cid = 16) and item.dim[1].value <= 12) or (item.cid = 8 and item.dim[3].value <= 12)) then
+if item.cid = 53 or item.cid = 54 then
+item.dim[5].value = 6
+item.update()
+elseif item.cid = 807 or item.cid = 812 then
+item.dim[4].value = 6
+item.update()
+end if
+item.damper[2].value = "KS7L-l"
+item.damper[2].locked = true
+item.update()
+elseif (((item.cid = 53 or item.cid = 54) and item.dim[2].value > 12) or ((item.cid = 807 or item.cid = 812) and item.dim[1].value > 12) or (item.cid = 8 and item.dim[3].value > 12)) then
+if item.cid = 53 or item.cid = 54 then
+item.dim[5].value = 6
+item.update()
+elseif item.cid = 807 or item.cid = 812 then
+item.dim[4].value = 6
+item.update()
+end if
+item.damper[2].value = "3/8"+qt+" ROD-L"
+item.damper[2].locked = true
+item.update()
+end if
+end function
+function turnOffD2 ()
+dim item = task.selection[i]
+if item.cid = 53 or item.cid = 54 then
+item.dim[5].value = 0
+item.damper[2].value = "NONE"
+item.damper[2].locked = true
+item.update()
+elseif item.cid = 807 or item.cid = 812 then
+item.dim[4].value = 1
+item.damper[2].value = "NONE"
+item.damper[2].locked = true
+item.update()
+end if
+end function
+rem~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+function turnOnD3 ()
+dim item = task.selection[i]
+if (((item.cid = 53 or item.cid = 54) and item.dim[2].value <= 12) or ((item.cid = 807 or item.cid = 812) and item.dim[1].value <= 12)) then
+if item.cid = 53 or item.cid = 54 then
+item.damper[3].value = "KS7L-l"
+item.damper[3].locked = true
+item.update()
+elseif item.cid = 807 or item.cid = 812 then
+item.damper[3].value = "KS7L-l"
+item.damper[3].locked = true
+item.update()
+end if
+elseif (((item.cid = 53 or item.cid = 54) and item.dim[2].value > 12) or ((item.cid = 807 or item.cid = 812) and item.dim[1].value > 12)) then
+if item.cid = 53 or item.cid = 54 then
+item.damper[3].value = "3/8"+qt+" ROD-L"
+item.damper[3].locked = true
+item.update()
+elseif item.cid = 807 or item.cid = 812 then
+item.damper[3].value = "3/8"+qt+" ROD-L"
+item.damper[3].locked = true
+item.update()
+end if
+item.update()
+end if
+end function
+function turnOffD3 ()
+dim item = task.selection[i]
+if item.cid = 53 or item.cid = 54 or item.cid = 807 or item.cid = 812 then
+item.damper[3].value = "NONE"
+item.damper[3].locked = true
+item.update()
+end if
+end function
+rem~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+function turnOnD4 ()
+dim item = task.selection[i]
+if (((item.cid = 53 or item.cid = 54) and item.dim[2].value <= 12) or ((item.cid = 807 or item.cid = 812) and item.dim[1].value <= 12)) then
+if item.cid = 53 or item.cid = 54 then
+item.damper[4].value = "KS7L-l"
+item.damper[4].locked = true
+item.update()
+elseif item.cid = 807 or item.cid = 812 then
+item.damper[4].value = "KS7L-l"
+item.damper[4].locked = true
+item.update()
+end if
+elseif (((item.cid = 53 or item.cid = 54) and item.dim[2].value > 12) or ((item.cid = 807 or item.cid = 812) and item.dim[1].value > 12)) then
+if item.cid = 53 or item.cid = 54 then
+item.damper[4].value = "3/8"+qt+" ROD-L"
+item.damper[4].locked = true
+item.update()
+elseif item.cid = 807 or item.cid = 812 then
+item.damper[4].value = "3/8"+qt+" ROD-L"
+item.damper[4].locked = true
+item.update()
+end if
+item.update()
+end if
+end function
+function turnOffD4 ()
+dim item = task.selection[i]
+if item.cid = 53 or item.cid = 54 or item.cid = 807 or item.cid = 812 then
+item.damper[4].value = "NONE"
+item.damper[4].locked = true
+item.update()
+end if
+end function
+rem~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+function turnOnD2D3 ()
+dim item = task.selection[i]
+if (((item.cid = 53 or item.cid = 54) and item.dim[2].value <= 12) or ((item.cid = 807 or item.cid = 812) and item.dim[1].value <= 12)) then
+if item.cid = 53 or item.cid = 54 then
+item.dim[5].value = 6
+item.damper[2].value = "KS7L-l"
+item.damper[2].locked = true
+item.damper[3].value = "KS7L-l"
+item.damper[3].locked = true
+item.update()
+elseif item.cid = 807 or item.cid = 812 then
+item.dim[4].value = 6
+item.damper[2].value = "KS7L-l"
+item.damper[2].locked = true
+item.damper[3].value = "KS7L-l"
+item.damper[3].locked = true
+item.update()
+end if
+elseif (((item.cid = 53 or item.cid = 54) and item.dim[2].value > 12) or ((item.cid = 807 or item.cid = 812) and item.dim[1].value > 12)) then
+if item.cid = 53 or item.cid = 54 then
+item.dim[5].value = 6
+item.damper[2].value = "3/8"+qt+" ROD-L"
+item.damper[2].locked = true
+item.damper[3].value = "3/8"+qt+" ROD-L"
+item.damper[3].locked = true
+item.update()
+elseif item.cid = 807 or item.cid = 812 then
+item.dim[4].value = 6
+item.damper[2].value = "3/8"+qt+" ROD-L"
+item.damper[2].locked = true
+item.damper[3].value = "3/8"+qt+" ROD-L"
+item.damper[3].locked = true
+item.update()
+end if
+item.update()
+end if
+end function
+function turnOffD2D3 ()
+dim item = task.selection[i]
+if item.cid = 53 or item.cid = 54 then
+item.dim[5].value = 0
+item.damper[2].value = "NONE"
+item.damper[2].locked = true
+item.damper[3].value = "NONE"
+item.damper[3].locked = true
+item.update()
+elseif item.cid = 807 or item.cid = 812 then
+item.dim[4].value = 1
+item.damper[2].value = "NONE"
+item.damper[2].locked = true
+item.damper[3].value = "NONE"
+item.damper[3].locked = true
+item.update()
+end if
+end function
+rem~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+function turnOnD2D3D4 ()
+dim item = task.selection[i]
+if (((item.cid = 53 or item.cid = 54) and item.dim[2].value <= 12) or ((item.cid = 807 or item.cid = 812) and item.dim[1].value <= 12)) then
+if item.cid = 53 or item.cid = 54 then
+item.dim[5].value = 6
+item.damper[2].value = "KS7L-l"
+item.damper[2].locked = true
+item.damper[3].value = "KS7L-l"
+item.damper[3].locked = true
+item.damper[4].value = "KS7L-l"
+item.damper[4].locked = true
+item.update()
+elseif item.cid = 807 or item.cid = 812 then
+item.dim[4].value = 6
+item.damper[2].value = "KS7L-l"
+item.damper[2].locked = true
+item.damper[3].value = "KS7L-l"
+item.damper[3].locked = true
+item.damper[4].value = "KS7L-l"
+item.damper[4].locked = true
+item.update()
+end if
+elseif (((item.cid = 53 or item.cid = 54) and item.dim[2].value > 12) or ((item.cid = 807 or item.cid = 812) and item.dim[1].value > 12)) then
+if item.cid = 53 or item.cid = 54 then
+item.dim[5].value = 6
+item.damper[2].value = "3/8"+qt+" ROD-L"
+item.damper[2].locked = true
+item.damper[3].value = "3/8"+qt+" ROD-L"
+item.damper[3].locked = true
+item.damper[4].value = "3/8"+qt+" ROD-L"
+item.damper[4].locked = true
+item.update()
+elseif item.cid = 807 or item.cid = 812 then
+item.dim[4].value = 6
+item.damper[2].value = "3/8"+qt+" ROD-L"
+item.damper[2].locked = true
+item.damper[3].value = "3/8"+qt+" ROD-L"
+item.damper[3].locked = true
+item.damper[4].value = "3/8"+qt+" ROD-L"
+item.damper[4].locked = true
+item.update()
+end if
+item.update()
+end if
+end function
+function turnOffD2D3D4 ()
+dim item = task.selection[i]
+if item.cid = 53 or item.cid = 54 then
+item.dim[5].value = 0
+item.damper[2].value = "NONE"
+item.damper[2].locked = true
+item.damper[3].value = "NONE"
+item.damper[3].locked = true
+item.damper[4].value = "NONE"
+item.damper[4].locked = true
+item.update()
+elseif item.cid = 807 or item.cid = 812 then
+item.dim[4].value = 1
+item.damper[2].value = "NONE"
+item.damper[2].locked = true
+item.damper[3].value = "NONE"
+item.damper[3].locked = true
+item.damper[4].value = "NONE"
+item.damper[4].locked = true
+item.update()
+end if
+end function
+rem~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+if item.cid = 51 or item.cid = 751 or item.cid = 875 or item.cid = 345 or item.cid = 16 or item.cid = 8 then
+if item.dampers = 1 then
+if ((item.cid = 345 or item.cid = 16 or item.cid = 8) and item.damper[1].value = "NONE") then
+turnOnTapSqRdDamper ()
+elseif ((item.cid = 345 or item.cid = 16 or item.cid = 8) and item.damper[1].value <> "NONE") then
+turnOffTapSqRdDamper ()
+end if
+elseif item.dampers = 2 then
+if item.cid = 51 and item.damper[2].value = "NONE" then
+turnOnTapSqRdDamper ()
+elseif item.cid = 51 and item.damper[2].value <> "NONE" then
+turnOffTapSqRdDamper ()
+end if
+elseif item.dampers = 3 then
+if ((item.cid = 751 or item.cid = 875) and item.damper[3].value = "NONE") then
+turnOnTapSqRdDamper ()
+elseif ((item.cid = 751 or item.cid = 875) and item.damper[3].value <> "NONE") then
+turnOffTapSqRdDamper ()
+end if
+end if
+elseif item.cid <> 51 and item.cid <> 751 and item.cid <> 875 and item.cid <> 345 and item.cid <> 16 and item.cid <> 8 then
+if item.dampers = 1 then
+if item.damper[1].value = "NONE" then
+turnOnD1 ()
+elseif item.damper[1].value <> "NONE" then
+turnOffD1 ()
+end if
+elseif item.dampers = 2 then
+if item.damper[2].value = "NONE" then
+turnOnD2 ()
+elseif item.damper[2].value <> "NONE" then
+turnOffD2 ()
+end if
+elseif item.dampers = 3 then
+if item.damper[2].value = "NONE" and item.damper[3].value = "NONE" then
+turnOnD3 ()
+elseif item.damper[2].value = "NONE" and item.damper[3].value <> "NONE" then
+turnOffD3 ()
+turnOnD2 ()
+elseif item.damper[2].value <> "NONE" and item.damper[3].value = "NONE" then
+turnOnD2D3 ()
+elseif item.damper[2].value <> "NONE" and item.damper[3].value <> "NONE" then
+turnOffD2D3 ()
+end if
+elseif item.dampers = 4 then
+if item.damper[2].value = "NONE" and item.damper[3].value = "NONE" and item.damper[4].value = "NONE" then
+turnOnD3 ()
+elseif item.damper[2].value = "NONE" and item.damper[3].value <> "NONE" and item.damper[4].value = "NONE" then
+turnOffD3 ()
+turnOnD4 ()
+elseif item.damper[2].value = "NONE" and item.damper[3].value = "NONE" and item.damper[4].value <> "NONE" then
+turnOffD4 ()
+turnOnD2 ()
+elseif item.damper[2].value <> "NONE" and item.damper[3].value = "NONE" and item.damper[4].value = "NONE" then
+turnOnD3 ()
+elseif item.damper[2].value <> "NONE" and item.damper[3].value <> "NONE" and item.damper[4].value = "NONE" then
+turnOffD3 ()
+turnOnD4 ()
+elseif item.damper[2].value <> "NONE" and item.damper[3].value = "NONE" and item.damper[4].value <> "NONE" then
+turnOffD2 ()
+turnOnD3 ()
+elseif item.damper[2].value = "NONE" and item.damper[3].value <> "NONE" and item.damper[4].value <> "NONE" then
+turnOnD2 ()
+elseif item.damper[2].value <> "NONE" and item.damper[3].value <> "NONE" and item.damper[4].value <> "NONE" then
+turnOffD2D3D4 ()
+end if
+end if
+end if
+i = i + 1
+end while

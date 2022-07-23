@@ -1,0 +1,84 @@
+requires task.selection
+dim i = 1
+task.beginprogress(task.selection.count)
+while i <= task.selection.count
+dim item = task.selection[i]
+dim qt = ASCII(34)
+REM ROUND EVALUATION
+if item.insspec = "INSULATION: Liner x 0.50" then
+item.insspec = "INSULATION: Liner x 1.00"
+item.update()
+elseif item.insspec = "INSULATION: Liner x 1.00" then
+item.insspec = "INSULATION: Liner x 1.50"
+item.update()
+elseif item.insspec = "INSULATION: Liner x 1.50" then
+item.insspec = "INSULATION: Liner x 2.00"
+item.update()
+elseif item.insspec = "INSULATION: Liner x 2.00" then
+item.insspec = "INSULATION: Duct Wrap x 1.00"
+item.update()
+elseif item.insspec = "INSULATION: Duct Wrap x 1.00" then
+item.insspec = "INSULATION: Duct Wrap x 1.50"
+item.update()
+elseif item.insspec = "INSULATION: Duct Wrap x 1.50" then
+item.insspec = "INSULATION: Duct Wrap x 2.00"
+item.update()
+elseif item.insspec = "INSULATION: Duct Wrap x 2.00" then
+item.insspec = "INSULATION: Duct Wrap x 3.00"
+item.update()
+elseif item.insspec = "INSULATION: Duct Wrap x 3.00" then
+item.insspec = "INSULATION: Duct Wrap x 4.00"
+item.update()
+elseif item.insspec = "INSULATION: Duct Wrap x 4.00" then
+item.insspec = "INSULATION: Fire Wrap x 2.00"
+item.update()
+elseif item.insspec = "INSULATION: Fire Wrap x 2.00" then
+item.insspec = "INSULATION: Fire Wrap x 3.00"
+item.update()
+elseif item.insspec = "INSULATION: Fire Wrap x 3.00" then
+item.insspec = "INSULATION: Fire Wrap x 4.00"
+item.update()
+elseif item.insspec = "INSULATION: Fire Wrap x 4.00" then
+item.insspec = "INSULATION: Fire Wrap x 5.00"
+item.update()
+elseif item.insspec = "INSULATION: Fire Wrap x 5.00" then
+item.insspec = "INSULATION: Fire Wrap x 6.00"
+item.update()
+elseif item.insspec = "INSULATION: Fire Wrap x 6.00" then
+item.insspec = "INSULATION: Fire Wrap x 7.00"
+item.update()
+elseif item.insspec = "INSULATION: Fire Wrap x 7.00" then
+item.insspec = "INSULATION: Fire Wrap x 8.00"
+item.update()
+elseif item.insspec = "INSULATION: Fire Wrap x 8.00" then
+item.insspec = "INSULATION: Fire Wrap x 9.00"
+item.update()
+elseif item.insspec = "INSULATION: Fire Wrap x 9.00" then
+item.insspec = "INSULATION: Fire Wrap x 10.00"
+item.update()
+elseif item.insspec = "INSULATION: Fire Wrap x 10.00" then
+item.insspec = "INSULATION: Double Wall x 0.50"
+item.update()
+elseif item.insspec = "INSULATION: Double Wall x 0.50" then
+item.insspec = "INSULATION: Double Wall x 1.00"
+item.update()
+elseif item.insspec = "INSULATION: Double Wall x 1.00" then
+item.insspec = "INSULATION: Double Wall x 1.50"
+item.update()
+elseif item.insspec = "INSULATION: Double Wall x 1.50" then
+item.insspec = "INSULATION: Double Wall x 2.00"
+item.update()
+elseif item.insspec = "INSULATION: Double Wall x 2.00" then
+item.insspec = "Off"
+item.update()
+elseif item.insspec = "Off" then
+item.insspec = "INSULATION: Liner x 0.50"
+item.update()
+end if
+dim j = 1
+while j < 100
+task.message = "You have just switched to: " + item.insspec
+j = j + 1
+end while
+i = i + 1
+end while

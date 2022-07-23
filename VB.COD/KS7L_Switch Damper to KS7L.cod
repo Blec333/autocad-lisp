@@ -1,0 +1,84 @@
+requires task.selection
+dim i = 1
+dim qt = ASCII(34)
+while i <= task.selection.count
+dim item = task.selection[i]
+if item.dampers > 0 then
+if item.dampers = 1 then
+if item.damper[1].value = "3/8"+qt+" ROD-L" then
+item.damper[1].value = "KS7L-l"
+item.damper[1].locked = true
+elseif item.damper[1].value = "3/8"+qt+" ROD-R" then
+item.damper[1].value = "KS7L-r"
+item.damper[1].locked = true
+end if
+elseif item.dampers = 2 then
+if item.damper[1].value = "3/8"+qt+" ROD-L" then
+item.damper[1].value = "KS7L-l"
+item.damper[1].locked = true
+elseif item.damper[1].value = "3/8"+qt+" ROD-R" then
+item.damper[1].value = "KS7L-r"
+item.damper[1].locked = true
+end if
+if item.damper[2].value = "3/8"+qt+" ROD-L" then
+item.damper[2].value = "KS7L-l"
+item.damper[2].locked = true
+elseif item.damper[2].value = "3/8"+qt+" ROD-R" then
+item.damper[2].value = "KS7L-r"
+item.damper[2].locked = true
+end if
+elseif item.dampers = 3 then
+if item.damper[1].value = "3/8"+qt+" ROD-L" then
+item.damper[1].value = "KS7L-l"
+item.damper[1].locked = true
+elseif item.damper[1].value = "3/8"+qt+" ROD-R" then
+item.damper[1].value = "KS7L-r"
+item.damper[1].locked = true
+end if
+if item.damper[2].value = "3/8"+qt+" ROD-L" then
+item.damper[2].value = "KS7L-l"
+item.damper[2].locked = true
+elseif item.damper[2].value = "3/8"+qt+" ROD-R" then
+item.damper[2].value = "KS7L-r"
+item.damper[2].locked = true
+end if
+if item.damper[3].value = "3/8"+qt+" ROD-L" then
+item.damper[3].value = "KS7L-l"
+item.damper[3].locked = true
+elseif item.damper[3].value = "3/8"+qt+" ROD-R" then
+item.damper[3].value = "KS7L-r"
+item.damper[3].locked = true
+end if
+elseif item.dampers = 4 then
+if item.damper[1].value = "3/8"+qt+" ROD-L" then
+item.damper[1].value = "KS7L-l"
+item.damper[1].locked = true
+elseif item.damper[1].value = "3/8"+qt+" ROD-R" then
+item.damper[1].value = "KS7L-r"
+item.damper[1].locked = true
+end if
+if item.damper[2].value = "3/8"+qt+" ROD-L" then
+item.damper[2].value = "KS7L-l"
+item.damper[2].locked = true
+elseif item.damper[2].value = "3/8"+qt+" ROD-R" then
+item.damper[2].value = "KS7L-r"
+item.damper[2].locked = true
+end if
+if item.damper[3].value = "3/8"+qt+" ROD-L" then
+item.damper[3].value = "KS7L-l"
+item.damper[3].locked = true
+elseif item.damper[3].value = "3/8"+qt+" ROD-R" then
+item.damper[3].value = "KS7L-r"
+item.damper[3].locked = true
+end if
+if item.damper[4].value = "3/8"+qt+" ROD-L" then
+item.damper[4].value = "KS7L-l"
+item.damper[4].locked = true
+elseif item.damper[4].value = "3/8"+qt+" ROD-R" then
+item.damper[4].value = "KS7L-r"
+item.damper[4].locked = true
+end if
+end if
+end if
+i = i + 1
+end while

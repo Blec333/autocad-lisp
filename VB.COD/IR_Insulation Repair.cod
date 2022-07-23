@@ -1,0 +1,32 @@
+requires task.selection
+dim i = 1
+dim qt = ASCII(34)
+dim supplyGauge = inputbox("Enter SUPPLY service insulation thickness:")
+dim returnGauge = inputbox("Enter RETURN service insulation thickness:")
+while i <= task.selection.count
+dim item = task.selection[i]
+if (wildcard(item.service, "*SUPPLY*") = 1) and item.insulation.status <> "INSIDE" and (wildcard(item.description, "*CFSD*") = 0) and ((wildcard(supplyGauge, "F*") = 0) and (wildcard(supplyGauge, "N/A") = 0)) then
+item.ispeclock = false
+item.insspec = "None"
+item.ispeclock = true
+item.insulation.status = "OUTSIDE"
+item.insulation.material = "HVAC Liner: Duct Wrap"
+item.insulation.gauge = supplyGauge
+item.update()
+elseif (wildcard(item.service, "*RETURN*") = 1) and item.insulation.status <> "INSIDE" and (wildcard(item.description, "*CFSD*") = 0) and ((wildcard(returnGauge, "F*") = 0) and (wildcard(returnGauge, "N/A") = 0)) then
+item.ispeclock = false
+item.insspec = "None"
+item.ispeclock = true
+item.insulation.status = "OUTSIDE"
+item.insulation.material = "HVAC Liner: Duct Wrap"
+item.insulation.gauge = returnGauge
+item.update()
+elseif (wildcard(item.service, "*EXHAUST*") = 1) or (wildcard(item.description, "*CFSD*") = 1) or ((wildcard(item.service, "*OUTSIDE*") = 1) and item.insulation.status <> "INSIDE") then
+item.ispeclock = false
+item.insspec = "None"
+item.ispeclock = true
+item.insulation.status = "OFF"
+item.update()
+end if
+i = i + 1
+end while

@@ -1,0 +1,92 @@
+requires task.selection
+dim i = 1
+dim qt = ASCII(34)
+dim item = task.selection[i]
+if item.doublewall = false then
+dim zoneThickness = inputbox("No-Fly Zone Thickness:")
+while i <= task.selection.count
+dim item = task.selection[i]
+item.ispeclock = false
+item.insspec = "None"
+item.ispeclock = true
+item.dwlock = false
+item.doublewall = true
+item.dwlock = true
+item.update()
+item.skinmateriallock = false
+item.skinmaterial = "Ductwork No-Fly Zone"
+item.skinmateriallock = true
+item.insulation.status = "OUTSIDE"
+item.insulation.materiallock = false
+item.insulation.material = "Ductwork No-Fly Zone: Ductwork No-Fly Zone"
+item.insulation.materiallock = true
+item.insulation.gauge = zoneThickness
+item.dimsidelock = false
+item.dimside = "inside"
+item.dimsidelock = true
+item.skinside = "outside"
+item.update()
+i = i + 1
+end while
+elseif item.doublewall = true then
+dim insulationType = inputbox("Type:HVAC[Liner]/Duct[Wrap]/[Off]/[Fire]Barrier?:")
+if insulationType = "Off" or insulationType = "off" or insulationType = "OFF" then
+while i <= task.selection.count
+dim item = task.selection[i]
+dim insulStatus = "OFF"
+item.dwlock = false
+item.doublewall = false
+item.dwlock = true
+item.update()
+item.insulation.status = insulStatus
+item.update()
+i = i + 1
+end while
+elseif insulationType = "Liner" or insulationType = "liner" or insulationType = "LINER" or insulationType = "Wrap" or insulationType = "wrap" or insulationType = "WRAP" or insulationType = "Fire" or insulationType = "fire" or insulationType = "FIRE" then
+dim insulationThickness = inputbox("Enter insulation thickness:")
+while i <= task.selection.count
+dim item = task.selection[i]
+if insulationType = "Liner" or insulationType = "liner" or insulationType = "LINER" then
+dim insulMat = "HVAC Liner: 1-1/2 LB"
+dim insulStatus = "INSIDE"
+item.dwlock = false
+item.doublewall = false
+item.dwlock = true
+item.update()
+item.insulation.materiallock = false
+item.insulation.material = insulMat
+item.insulation.materiallock = true
+item.insulation.gauge = insulationThickness
+item.insulation.status = insulStatus
+item.update()
+elseif insulationType = "Wrap" or insulationType = "wrap" or insulationType = "WRAP" then
+dim insulMat = "HVAC Liner: Duct Wrap"
+dim insulStatus = "OUTSIDE"
+item.dwlock = false
+item.doublewall = false
+item.dwlock = true
+item.update()
+item.insulation.materiallock = false
+item.insulation.material = insulMat
+item.insulation.materiallock = true
+item.insulation.gauge = insulationThickness
+item.insulation.status = insulStatus
+item.update()
+elseif insulationType = "Fire" or insulationType = "fire" or insulationType = "FIRE" then
+dim insulMat = "Fire Barrier Duct Wrap: Fire Barrier Duct Wrap"
+dim insulStatus = "OUTSIDE"
+item.dwlock = false
+item.doublewall = false
+item.dwlock = true
+item.update()
+item.insulation.materiallock = false
+item.insulation.material = insulMat
+item.insulation.materiallock = true
+item.insulation.gauge = insulationThickness
+item.insulation.status = insulStatus
+item.update()
+end if
+i = i + 1
+end while
+end if
+end if

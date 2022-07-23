@@ -1,0 +1,146 @@
+requires task.selection
+dim i = 1
+dim qt = ASCII(34)
+while i <= task.selection.count
+dim item = task.selection[i]
+if (wildcard(item.service,"*combustion*") = 1) then
+item.speclock = false
+item.gaugelock = false
+item.specification = "-2" + qt + "TDF"
+item.speclock = true
+item.update()
+elseif (wildcard(item.service,"*exhaust air high pres. (-10*") = 1) then
+item.speclock = false
+item.gaugelock = false
+item.specification = "-10" + qt + "TDF"
+item.speclock = true
+item.update()
+elseif (wildcard(item.service,"*exhaust air high pres. (-6*") = 1) then
+item.speclock = false
+item.gaugelock = false
+item.specification = "-6" + qt + "TDF"
+item.speclock = true
+item.update()
+elseif (wildcard(item.service,"*exhaust air high pres. (-4*") = 1) then
+item.speclock = false
+item.gaugelock = false
+item.specification = "-4" + qt + "TDF"
+item.speclock = true
+item.update()
+elseif (wildcard(item.service,"*exhaust air inslab*") = 1) then
+item.speclock = false
+item.gaugelock = false
+item.specification = "-2" + qt + "TDF"
+item.speclock = true
+item.update()
+elseif (wildcard(item.service,"*exhaust air low*") = 1) then
+item.speclock = false
+item.gaugelock = false
+item.specification = "-2" + qt + "TDF"
+item.speclock = true
+item.update()
+elseif (wildcard(item.service,"*exhaust air medium*") = 1) then
+item.speclock = false
+item.gaugelock = false
+item.specification = "-3" + qt + "TDF"
+item.speclock = true
+item.update()
+elseif (wildcard(item.service,"*exhaust air weld (-10*") = 1) then
+item.speclock = false
+item.gaugelock = false
+item.specification = "-10" + qt + "TDF"
+item.speclock = true
+item.update()
+elseif (wildcard(item.service,"*exhaust air weld (-6*") = 1) then
+item.speclock = false
+item.gaugelock = false
+item.specification = "-6" + qt + "TDF"
+item.speclock = true
+item.update()
+elseif (wildcard(item.service,"*exhaust air weld (-4*") = 1) then
+item.speclock = false
+item.gaugelock = false
+item.specification = "-4" + qt + "TDF"
+item.speclock = true
+item.update()
+elseif (wildcard(item.service,"*exhaust air weld (-2*") = 1) then
+item.speclock = false
+item.gaugelock = false
+item.specification = "-2" + qt + "TDF"
+item.speclock = true
+item.update()
+elseif (wildcard(item.service,"*outside*") = 1) then
+item.speclock = false
+item.gaugelock = false
+item.specification = "-2" + qt + "TDF"
+item.speclock = true
+item.update()
+elseif (wildcard(item.service,"*return air high pres. (-10*") = 1) then
+item.speclock = false
+item.gaugelock = false
+item.specification = "-10" + qt + "TDF"
+item.speclock = true
+item.update()
+elseif (wildcard(item.service,"*return air high pres. (-6*") = 1) then
+item.speclock = false
+item.gaugelock = false
+item.specification = "-6" + qt + "TDF"
+item.speclock = true
+item.update()
+elseif (wildcard(item.service,"*return air high pres. (-4*") = 1) then
+item.speclock = false
+item.gaugelock = false
+item.specification = "-4" + qt + "TDF"
+item.speclock = true
+item.update()
+elseif (wildcard(item.service,"*return air high pres. (-2*") = 1) then
+item.speclock = false
+item.gaugelock = false
+item.specification = "-2" + qt + "TDF"
+item.speclock = true
+item.update()
+elseif (wildcard(item.service,"*return air medium*") = 1) then
+item.speclock = false
+item.gaugelock = false
+item.specification = "-3" + qt + "TDF"
+item.speclock = true
+item.update()
+elseif (wildcard(item.service,"*supply air high pres. (+10*") = 1) then
+item.speclock = false
+item.gaugelock = false
+item.specification = "+10" + qt + " TDF"
+item.speclock = true
+item.update()
+elseif (wildcard(item.service,"*supply air high pres. (+6*") = 1) then
+item.speclock = false
+item.gaugelock = false
+item.specification = "+6" + qt + " TDF"
+item.speclock = true
+item.update()
+elseif (wildcard(item.service,"*supply air high pres. (+4*") = 1) then
+item.speclock = false
+item.gaugelock = false
+item.specification = "+4" + qt + " TDF"
+item.speclock = true
+item.update()
+elseif (wildcard(item.service,"*supply air medium*") = 1) then
+item.speclock = false
+item.gaugelock = false
+item.specification = "+3" + qt + " TDF"
+item.speclock = true
+item.update()
+elseif (wildcard(item.service,"*supply air low*") = 1) then
+item.speclock = false
+item.gaugelock = false
+item.specification = "+2" + qt + " TDF"
+item.speclock = true
+item.update()
+elseif (wildcard(item.service,"*transfer air*") = 1) then
+item.speclock = false
+item.gaugelock = false
+item.specification = "-2" + qt + "TDF"
+item.speclock = true
+item.update()
+end if
+i = i + 1
+end while

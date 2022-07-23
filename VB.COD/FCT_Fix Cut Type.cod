@@ -1,0 +1,26 @@
+select item.cid
+case 40
+item.cuttype = "Spiral Straight"
+case 866
+if item.dim["Length"].value < 56 or item.dim["Width"].value < 1.5 or item.dim["Depth"].value < 1.5 or item.dim["Width"].value > 124 or item.dim["Depth"].value > 124 then
+item.cuttype = "Machine Cut"
+else
+item.cuttype = "Decoiled Straight"
+end if
+case 166,514,523,555,873,838,910,521,996,505,530,535,580,504,5231,3
+item.cuttype = "Equipment"
+case 7,20,8,2,330,54,53,807,812,1,17,30,382,861,19,61,818,51,875,751,16,345,51,818,162,68,60,64,31,388,856,5000,382,12,802
+item.cuttype = "Machine Cut"
+case 522
+if item.description = "#2 RND. CPLG. PIPE" then
+item.cuttype = "Draw Only"
+else
+item.cuttype = "Equipment"
+end if
+case 902
+if item.description = "Access Zone" then
+item.cuttype = "Draw Only"
+else
+item.cuttype = "Equipment"
+end if
+end select

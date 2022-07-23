@@ -1,0 +1,254 @@
+requires task.selection
+dim i = 1
+dim qt = ASCII(34)
+while i <= task.selection.count
+dim item = task.selection[i]
+if item.cid = 818 then
+if item.connector[3].value <> "1 Flg In" then
+item.dim["Branch Width #1"].value = item.dim["Branch Width #1"].value + 2
+item.dim["Branch Depth #1"].value = item.dim["Branch Depth #1"].value + 2
+item.dim["Branch Length #1"].value = item.dim["Branch Length #1"].value - item.dim["Branch Length #1"].value + 13
+item.dim["Branch Extension #1"].value = item.dim["Branch Extension #1"].value - item.dim["Branch Extension #1"].value + 9
+item.damper[3].value = "RECT DAMPER-R"
+item.damper[3].locked = true
+item.update()
+REM ==== BEGIN GRILLE FUNCTION ====
+dim c1Num = 3
+dim c1Name = "1 Flg In"
+dim c1Grp = "Duct - Flanged"
+function connFind(cnum,cgrp,cnam)
+dim count = 1
+while item.connector[cnum].group <> cgrp
+item.connector[cnum].value = count
+count = count + 1
+end while
+while item.connector[cnum].value <> cnam
+item.connector[cnum].value = count
+count = count + 1
+end while
+end function
+item.connector[c1Num].value = c1Name
+item.connector[c1Num].locked = true
+if item.connector[c1Num].group <> c1Grp then
+connFind(c1Num,c1Grp,c1Name)
+end if
+REM ==== END GRILLE FUNCTION ====
+elseif item.connector[3].value = "1 Flg In" then
+item.dim["Branch Width #1"].value = item.dim["Branch Width #1"].value - 2
+item.dim["Branch Depth #1"].value = item.dim["Branch Depth #1"].value - 2
+item.dim["Branch Length #1"].value = item.dim["Branch Length #1"].value - item.dim["Branch Length #1"].value + 6
+item.dim["Branch Extension #1"].value = item.dim["Branch Extension #1"].value - item.dim["Branch Extension #1"].value + 0
+item.damper[3].value = "NONE"
+item.damper[3].locked = true
+item.update()
+if (((wildcard(item.service, "*1/2"+qt+"*") = 1) and ((item.dim[2].value > 36 or item.dim[3].value > 36) or (item.dim[2].value > 18 and item.dim[3].value > 18)))
+or ((wildcard(item.service, "*1"+qt+"*") = 1) and ((item.dim[2].value > 36 or item.dim[3].value > 36) or (item.dim[2].value > 18 and item.dim[3].value > 18)))
+or ((wildcard(item.service, "*2"+qt+"*") = 1) and ((item.dim[2].value > 26 or item.dim[3].value > 26) or (item.dim[2].value > 18 and item.dim[3].value > 18)))
+or ((wildcard(item.service, "*3"+qt+"*") = 1) and ((item.dim[2].value > 22 or item.dim[3].value > 22) or (item.dim[2].value > 18 and item.dim[3].value > 18)))
+or ((wildcard(item.service, "*4"+qt+"*") = 1) and ((item.dim[2].value > 22 or item.dim[3].value > 22) or (item.dim[2].value > 18 and item.dim[3].value > 18)))
+or ((wildcard(item.service, "*6"+qt+"*") = 1) and (item.dim[2].value > 0 or item.dim[3].value > 0))
+or ((wildcard(item.service, "*10"+qt+"*") = 1) and (item.dim[2].value > 0 or item.dim[3].value > 0))) then
+REM ==== BEGIN TDF FUNCTION ====
+dim c1Num = 3
+dim c1Name = "TDF "
+dim c1Grp = "Duct - Flg Connector"
+function connFind(cnum,cgrp,cnam)
+dim count = 1
+while item.connector[cnum].group <> cgrp
+item.connector[cnum].value = count
+count = count + 1
+end while
+while item.connector[cnum].value <> cnam
+item.connector[cnum].value = count
+count = count + 1
+end while
+end function
+item.connector[c1Num].value = c1Name
+item.connector[c1Num].locked = true
+if item.connector[c1Num].group <> c1Grp then
+connFind(c1Num,c1Grp,c1Name)
+end if
+REM ==== END TDF FUNCTION ====
+item.update()
+elseif (((wildcard(item.service, "*1/2"+qt+"*") = 1) and (((item.dim[2].value <= 36 and item.dim[2].value >= 21) and item.dim[3].value <= 18) or ((item.dim[3].value <= 36 and item.dim[3].value >= 21) and item.dim[2].value <= 18)))
+or ((wildcard(item.service, "*1"+qt+"*") = 1) and (((item.dim[2].value <= 36 and item.dim[2].value >= 21) and item.dim[3].value <= 18) or ((item.dim[3].value <= 36 and item.dim[3].value >= 21) and item.dim[2].value <= 18)))
+or ((wildcard(item.service, "*2"+qt+"*") = 1) and (((item.dim[2].value <= 26 and item.dim[2].value >= 17) and item.dim[3].value <= 18) or ((item.dim[3].value <= 26 and item.dim[3].value >= 17) and item.dim[2].value <= 18)))
+or ((wildcard(item.service, "*3"+qt+"*") = 1) and (((item.dim[2].value <= 22 and item.dim[2].value >= 17) and item.dim[3].value <= 18) or ((item.dim[3].value <= 22 and item.dim[3].value >= 17) and item.dim[2].value <= 18)))
+or ((wildcard(item.service, "*4"+qt+"*") = 1) and (((item.dim[2].value <= 22 and item.dim[2].value >= 17) and item.dim[3].value <= 18) or ((item.dim[3].value <= 22 and item.dim[3].value >= 17) and item.dim[2].value <= 18)))) then
+REM ==== BEGIN STAND S&D FUNCTION ====
+dim c1Num = 3
+dim c1Name = "Stand S&D"
+dim c1Grp = "Duct - S&D"
+function connFind(cnum,cgrp,cnam)
+dim count = 1
+while item.connector[cnum].group <> cgrp
+item.connector[cnum].value = count
+count = count + 1
+end while
+while item.connector[cnum].value <> cnam
+item.connector[cnum].value = count
+count = count + 1
+end while
+end function
+item.connector[c1Num].value = c1Name
+item.connector[c1Num].locked = true
+if item.connector[c1Num].group <> c1Grp then
+connFind(c1Num,c1Grp,c1Name)
+end if
+REM ==== END STAND S&D FUNCTION ====
+item.update()
+elseif (((wildcard(item.service, "*1/2"+qt+"*") = 1) and (item.dim[2].value < 21 and item.dim[3].value < 21))
+or ((wildcard(item.service, "*1"+qt+"*") = 1) and (item.dim[2].value < 21 and item.dim[3].value < 21))
+or ((wildcard(item.service, "*2"+qt+"*") = 1) and (item.dim[2].value < 17 and item.dim[3].value < 17))
+or ((wildcard(item.service, "*3"+qt+"*") = 1) and (item.dim[2].value < 17 and item.dim[3].value < 17))
+or ((wildcard(item.service, "*4"+qt+"*") = 1) and (item.dim[2].value < 17 and item.dim[3].value < 17))) then
+REM ==== BEGIN FLAT S&D FUNCTION ====
+dim c1Num = 3
+dim c1Name = "Flat S&D"
+dim c1Grp = "Duct - S&D"
+function connFind(cnum,cgrp,cnam)
+dim count = 1
+while item.connector[cnum].group <> cgrp
+item.connector[cnum].value = count
+count = count + 1
+end while
+while item.connector[cnum].value <> cnam
+item.connector[cnum].value = count
+count = count + 1
+end while
+end function
+item.connector[c1Num].value = c1Name
+item.connector[c1Num].locked = true
+if item.connector[c1Num].group <> c1Grp then
+connFind(c1Num,c1Grp,c1Name)
+end if
+REM ==== END FLAT S&D FUNCTION ====
+item.update()
+end if
+end if
+elseif item.cid = 7 then
+if item.connector[1].value <> "1 Flg In" then
+item.dim[1].value = item.dim[1].value + 2
+item.dim[2].value = item.dim[2].value + 2
+item.dim[3].value = item.dim[3].numvalue - item.dim[3].numvalue + 13
+item.dim[4].value = item.dim[4].value - item.dim[4].value + 9
+item.damper[1].value = "RECT DAMPER-R"
+item.damper[1].locked = true
+item.update()
+REM ==== BEGIN GRILLE FUNCTION ====
+dim c1Num = 1
+dim c1Name = "1 Flg In"
+dim c1Grp = "Duct - Flanged"
+function connFind(cnum,cgrp,cnam)
+dim count = 1
+while item.connector[cnum].group <> cgrp
+item.connector[cnum].value = count
+count = count + 1
+end while
+while item.connector[cnum].value <> cnam
+item.connector[cnum].value = count
+count = count + 1
+end while
+end function
+item.connector[c1Num].value = c1Name
+item.connector[c1Num].locked = true
+if item.connector[c1Num].group <> c1Grp then
+connFind(c1Num,c1Grp,c1Name)
+end if
+REM ==== END GRILLE FUNCTION ====
+elseif item.connector[1].value = "1 Flg In" then
+item.dim[1].value = item.dim[1].value - 2
+item.dim[2].value = item.dim[2].value - 2
+item.dim[3].value = item.dim[3].numvalue - item.dim[3].numvalue + 6
+item.dim[4].value = item.dim[4].value - item.dim[4].value + 1.5
+item.damper[1].value = "NONE"
+item.damper[1].locked = true
+item.update()
+if (((wildcard(item.service, "*1/2"+qt+"*") = 1) and ((item.dim[1].value > 36 or item.dim[2].value > 36) or (item.dim[1].value > 18 and item.dim[2].value > 18)))
+or ((wildcard(item.service, "*1"+qt+"*") = 1) and ((item.dim[1].value > 36 or item.dim[2].value > 36) or (item.dim[1].value > 18 and item.dim[2].value > 18)))
+or ((wildcard(item.service, "*2"+qt+"*") = 1) and ((item.dim[1].value > 26 or item.dim[2].value > 26) or (item.dim[1].value > 18 and item.dim[2].value > 18)))
+or ((wildcard(item.service, "*3"+qt+"*") = 1) and ((item.dim[1].value > 22 or item.dim[2].value > 22) or (item.dim[1].value > 18 and item.dim[2].value > 18)))
+or ((wildcard(item.service, "*4"+qt+"*") = 1) and ((item.dim[1].value > 22 or item.dim[2].value > 22) or (item.dim[1].value > 18 and item.dim[2].value > 18)))
+or ((wildcard(item.service, "*6"+qt+"*") = 1) and (item.dim[1].value > 0 or item.dim[2].value > 0))
+or ((wildcard(item.service, "*10"+qt+"*") = 1) and (item.dim[1].value > 0 or item.dim[2].value > 0))) then
+REM ==== BEGIN TDF FUNCTION ====
+dim c1Num = 1
+dim c1Name = "TDF "
+dim c1Grp = "Duct - Flg Connector"
+function connFind(cnum,cgrp,cnam)
+dim count = 1
+while item.connector[cnum].group <> cgrp
+item.connector[cnum].value = count
+count = count + 1
+end while
+while item.connector[cnum].value <> cnam
+item.connector[cnum].value = count
+count = count + 1
+end while
+end function
+item.connector[c1Num].value = c1Name
+item.connector[c1Num].locked = true
+if item.connector[c1Num].group <> c1Grp then
+connFind(c1Num,c1Grp,c1Name)
+end if
+REM ==== END TDF FUNCTION ====
+item.update()
+elseif (((wildcard(item.service, "*1/2"+qt+"*") = 1) and (((item.dim[1].value <= 36 and item.dim[1].value >= 21) and item.dim[2].value <= 18) or ((item.dim[2].value <= 36 and item.dim[2].value >= 21) and item.dim[1].value <= 18)))
+or ((wildcard(item.service, "*1"+qt+"*") = 1) and (((item.dim[1].value <= 36 and item.dim[1].value >= 21) and item.dim[2].value <= 18) or ((item.dim[2].value <= 36 and item.dim[2].value >= 21) and item.dim[1].value <= 18)))
+or ((wildcard(item.service, "*2"+qt+"*") = 1) and (((item.dim[1].value <= 26 and item.dim[1].value >= 17) and item.dim[2].value <= 18) or ((item.dim[2].value <= 26 and item.dim[2].value >= 17) and item.dim[1].value <= 18)))
+or ((wildcard(item.service, "*3"+qt+"*") = 1) and (((item.dim[1].value <= 22 and item.dim[1].value >= 17) and item.dim[2].value <= 18) or ((item.dim[2].value <= 22 and item.dim[2].value >= 17) and item.dim[1].value <= 18)))
+or ((wildcard(item.service, "*4"+qt+"*") = 1) and (((item.dim[1].value <= 22 and item.dim[1].value >= 17) and item.dim[2].value <= 18) or ((item.dim[2].value <= 22 and item.dim[2].value >= 17) and item.dim[1].value <= 18)))) then
+REM ==== BEGIN STAND S&D FUNCTION ====
+dim c1Num = 1
+dim c1Name = "Stand S&D"
+dim c1Grp = "Duct - S&D"
+function connFind(cnum,cgrp,cnam)
+dim count = 1
+while item.connector[cnum].group <> cgrp
+item.connector[cnum].value = count
+count = count + 1
+end while
+while item.connector[cnum].value <> cnam
+item.connector[cnum].value = count
+count = count + 1
+end while
+end function
+item.connector[c1Num].value = c1Name
+item.connector[c1Num].locked = true
+if item.connector[c1Num].group <> c1Grp then
+connFind(c1Num,c1Grp,c1Name)
+end if
+REM ==== END STAND S&D FUNCTION ====
+item.update()
+elseif (((wildcard(item.service, "*1/2"+qt+"*") = 1) and (item.dim[1].value < 21 and item.dim[2].value < 21))
+or ((wildcard(item.service, "*1"+qt+"*") = 1) and (item.dim[1].value < 21 and item.dim[2].value < 21))
+or ((wildcard(item.service, "*2"+qt+"*") = 1) and (item.dim[1].value < 17 and item.dim[2].value < 17))
+or ((wildcard(item.service, "*3"+qt+"*") = 1) and (item.dim[1].value < 17 and item.dim[2].value < 17))
+or ((wildcard(item.service, "*4"+qt+"*") = 1) and (item.dim[1].value < 17 and item.dim[2].value < 17))) then
+REM ==== BEGIN FLAT S&D FUNCTION ====
+dim c1Num = 1
+dim c1Name = "Flat S&D"
+dim c1Grp = "Duct - S&D"
+function connFind(cnum,cgrp,cnam)
+dim count = 1
+while item.connector[cnum].group <> cgrp
+item.connector[cnum].value = count
+count = count + 1
+end while
+while item.connector[cnum].value <> cnam
+item.connector[cnum].value = count
+count = count + 1
+end while
+end function
+item.connector[c1Num].value = c1Name
+item.connector[c1Num].locked = true
+if item.connector[c1Num].group <> c1Grp then
+connFind(c1Num,c1Grp,c1Name)
+end if
+REM ==== END FLAT S&D FUNCTION ====
+item.update()
+end if
+end if
+end if
+i = i + 1
+end while

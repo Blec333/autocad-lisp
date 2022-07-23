@@ -1,0 +1,31 @@
+requires task.selection
+dim i = 1
+dim qt = ASCII(34)
+while i <= task.selection.count
+dim item = task.selection[i]
+item.ispeclock = false
+item.insspec = "None"
+item.ispeclock = true
+if item.cid <> 838 then
+if (wildcard(item.service,"*exhaust*") = 1) then
+item.insulation.status = "OFF"
+item.update()
+elseif (wildcard(item.service,"*exhaust*") = 0) then
+if item.insulation.status = "OFF" then
+item.insulation.status = "OUTSIDE"
+item.insulation.material = "HVAC Liner: Duct Wrap"
+item.insulation.gauge = 1.5
+item.update()
+elseif item.insulation.status = "OUTSIDE" then
+item.insulation.status = "INSIDE"
+item.insulation.material = "HVAC Liner: 1-1/2 LB"
+item.insulation.gauge = 1
+item.update()
+elseif (item.insulation.status = "INSIDE") then
+item.insulation.status = "OFF"
+item.update()
+end if
+end if
+end if
+i = i + 1
+end while

@@ -1,0 +1,280 @@
+requires task.selection
+dim i = 1
+dim qt = ASCII(34)
+while i <= task.selection.count
+dim item = task.selection[i]
+if item.connector[1].value = "TDF " and item.connector[2].value = "TDF " then
+REM ==== BEGIN JF STEP DOWN & TDF FUNCTION ====
+dim c1Num = 1
+dim c1Name = "JF 1"+qt+" DD"
+dim c1Grp = "Duct - Flg Connector"
+dim c2Num = 2
+dim c2Name = "TDF "
+dim c2Grp = "Duct - Flg Connector"
+function connFind(cnum,cgrp,cnam)
+dim count = 1
+while item.connector[cnum].group <> cgrp
+item.connector[cnum].value = count
+count = count + 1
+end while
+while item.connector[cnum].value <> cnam
+item.connector[cnum].value = count
+count = count + 1
+end while
+end function
+item.connector[c1Num].value = c1Name
+item.connector[c1Num].locked = true
+item.connector[c2Num].value = c2Name
+item.connector[c2Num].locked = true
+if item.connector[c1Num].group <> c1Grp then
+connFind(c1Num,c1Grp,c1Name)
+end if
+if item.connector[c2Num].group <> c2Grp then
+connFind(c2Num,c2Grp,c2Name)
+end if
+item.update()
+REM ==== END JF STEP DOWN & TDF FUNCTION ====
+elseif item.connector[1].value = "JF 1"+qt+" DD" and item.connector[2].value = "TDF " then
+REM ==== BEGIN JF STEP DOWN & TDF FUNCTION ====
+dim c1Num = 1
+dim c1Name = "TDF "
+dim c1Grp = "Duct - Flg Connector"
+dim c2Num = 2
+dim c2Name = "JF 1"+qt+" DD"
+dim c2Grp = "Duct - Flg Connector"
+function connFind(cnum,cgrp,cnam)
+dim count = 1
+while item.connector[cnum].group <> cgrp
+item.connector[cnum].value = count
+count = count + 1
+end while
+while item.connector[cnum].value <> cnam
+item.connector[cnum].value = count
+count = count + 1
+end while
+end function
+item.connector[c1Num].value = c1Name
+item.connector[c1Num].locked = true
+item.connector[c2Num].value = c2Name
+item.connector[c2Num].locked = true
+if item.connector[c1Num].group <> c1Grp then
+connFind(c1Num,c1Grp,c1Name)
+end if
+if item.connector[c2Num].group <> c2Grp then
+connFind(c2Num,c2Grp,c2Name)
+end if
+item.update()
+REM ==== END JF STEP DOWN & TDF FUNCTION ====
+elseif item.connector[1].value = "TDF " and item.connector[2].value = "JF 1"+qt+" DD" then
+REM ==== BEGIN TDF FUNCTION ====
+dim c1Num = 1
+dim c1Name = "TDF "
+dim c1Grp = "Duct - Flg Connector"
+dim c2Num = 2
+dim c2Name = "TDF "
+dim c2Grp = "Duct - Flg Connector"
+function connFind(cnum,cgrp,cnam)
+dim count = 1
+while item.connector[cnum].group <> cgrp
+item.connector[cnum].value = count
+count = count + 1
+end while
+while item.connector[cnum].value <> cnam
+item.connector[cnum].value = count
+count = count + 1
+end while
+end function
+item.connector[c1Num].value = c1Name
+item.connector[c1Num].locked = true
+item.connector[c2Num].value = c2Name
+item.connector[c2Num].locked = true
+if item.connector[c1Num].group <> c1Grp then
+connFind(c1Num,c1Grp,c1Name)
+end if
+if item.connector[c2Num].group <> c2Grp then
+connFind(c2Num,c2Grp,c2Name)
+end if
+REM ==== END TDF FUNCTION ====
+elseif item.connector[1].value = "Flat S&D" and item.connector[2].value = "Flat S&D" then
+REM ==== BEGIN S&D STEP DOWN & FLAT S&D FUNCTION ====
+dim c1Num = 1
+dim c1Name = "SD 1"+qt+" SD"
+dim c1Grp = "Duct - S&D"
+dim c2Num = 2
+dim c2Name = "Flat S&D"
+dim c2Grp = "Duct - S&D"
+function connFind(cnum,cgrp,cnam)
+dim count = 1
+while item.connector[cnum].group <> cgrp
+item.connector[cnum].value = count
+count = count + 1
+end while
+while item.connector[cnum].value <> cnam
+item.connector[cnum].value = count
+count = count + 1
+end while
+end function
+item.connector[c1Num].value = c1Name
+item.connector[c1Num].locked = true
+item.connector[c2Num].value = c2Name
+item.connector[c2Num].locked = true
+if item.connector[c1Num].group <> c1Grp then
+connFind(c1Num,c1Grp,c1Name)
+end if
+if item.connector[c2Num].group <> c2Grp then
+connFind(c2Num,c2Grp,c2Name)
+end if
+REM ==== END S&D STEP DOWN & FLAT S&D FUNCTION ====
+elseif item.connector[1].value = "SD 1"+qt+" SD" and item.connector[2].value = "Flat S&D" then
+REM ==== BEGIN S&D STEP DOWN & FLAT S&D FUNCTION ====
+dim c1Num = 1
+dim c1Name = "Flat S&D"
+dim c1Grp = "Duct - S&D"
+dim c2Num = 2
+dim c2Name = "SD 1"+qt+" SD"
+dim c2Grp = "Duct - S&D"
+function connFind(cnum,cgrp,cnam)
+dim count = 1
+while item.connector[cnum].group <> cgrp
+item.connector[cnum].value = count
+count = count + 1
+end while
+while item.connector[cnum].value <> cnam
+item.connector[cnum].value = count
+count = count + 1
+end while
+end function
+item.connector[c1Num].value = c1Name
+item.connector[c1Num].locked = true
+item.connector[c2Num].value = c2Name
+item.connector[c2Num].locked = true
+if item.connector[c1Num].group <> c1Grp then
+connFind(c1Num,c1Grp,c1Name)
+end if
+if item.connector[c2Num].group <> c2Grp then
+connFind(c2Num,c2Grp,c2Name)
+end if
+REM ==== END S&D STEP DOWN & FLAT S&D FUNCTION ====
+elseif item.connector[1].value = "Flat S&D" and item.connector[2].value = "SD 1"+qt+" SD" then
+REM ==== BEGIN S&D STEP DOWN & FLAT S&D FUNCTION ====
+dim c1Num = 1
+dim c1Name = "Flat S&D"
+dim c1Grp = "Duct - S&D"
+dim c2Num = 2
+dim c2Name = "Flat S&D"
+dim c2Grp = "Duct - S&D"
+function connFind(cnum,cgrp,cnam)
+dim count = 1
+while item.connector[cnum].group <> cgrp
+item.connector[cnum].value = count
+count = count + 1
+end while
+while item.connector[cnum].value <> cnam
+item.connector[cnum].value = count
+count = count + 1
+end while
+end function
+item.connector[c1Num].value = c1Name
+item.connector[c1Num].locked = true
+item.connector[c2Num].value = c2Name
+item.connector[c2Num].locked = true
+if item.connector[c1Num].group <> c1Grp then
+connFind(c1Num,c1Grp,c1Name)
+end if
+if item.connector[c2Num].group <> c2Grp then
+connFind(c2Num,c2Grp,c2Name)
+end if
+REM ==== END S&D STEP DOWN & FLAT S&D FUNCTION ====
+elseif item.connector[1].value = "Stand S&D" and item.connector[2].value = "Stand S&D" then
+REM ==== BEGIN S&D STEP DOWN & STAND S&D FUNCTION ====
+dim c1Num = 1
+dim c1Name = "SD 1"+qt+" SD"
+dim c1Grp = "Duct - S&D"
+dim c2Num = 2
+dim c2Name = "Stand S&D"
+dim c2Grp = "Duct - S&D"
+function connFind(cnum,cgrp,cnam)
+dim count = 1
+while item.connector[cnum].group <> cgrp
+item.connector[cnum].value = count
+count = count + 1
+end while
+while item.connector[cnum].value <> cnam
+item.connector[cnum].value = count
+count = count + 1
+end while
+end function
+item.connector[c1Num].value = c1Name
+item.connector[c1Num].locked = true
+item.connector[c2Num].value = c2Name
+item.connector[c2Num].locked = true
+if item.connector[c1Num].group <> c1Grp then
+connFind(c1Num,c1Grp,c1Name)
+end if
+if item.connector[c2Num].group <> c2Grp then
+connFind(c2Num,c2Grp,c2Name)
+end if
+REM ==== END S&D STEP DOWN & STAND S&D FUNCTION ====
+elseif item.connector[1].value = "SD 1"+qt+" SD" and item.connector[2].value = "Stand S&D" then
+REM ==== BEGIN S&D STEP DOWN & STAND S&D FUNCTION ====
+dim c1Num = 1
+dim c1Name = "Stand S&D"
+dim c1Grp = "Duct - S&D"
+dim c2Num = 2
+dim c2Name = "SD 1"+qt+" SD"
+dim c2Grp = "Duct - S&D"
+function connFind(cnum,cgrp,cnam)
+dim count = 1
+while item.connector[cnum].group <> cgrp
+item.connector[cnum].value = count
+count = count + 1
+end while
+while item.connector[cnum].value <> cnam
+item.connector[cnum].value = count
+count = count + 1
+end while
+end function
+item.connector[c1Num].value = c1Name
+item.connector[c1Num].locked = true
+item.connector[c2Num].value = c2Name
+item.connector[c2Num].locked = true
+if item.connector[c1Num].group <> c1Grp then
+connFind(c1Num,c1Grp,c1Name)
+end if
+if item.connector[c2Num].group <> c2Grp then
+connFind(c2Num,c2Grp,c2Name)
+end if
+REM ==== END S&D STEP DOWN & STAND S&D FUNCTION ====
+elseif item.connector[1].value = "Stand S&D" and item.connector[2].value = "SD 1"+qt+" SD" then
+REM ==== BEGIN S&D STEP DOWN & STAND S&D FUNCTION ====
+dim c1Num = 1
+dim c1Name = "Stand S&D"
+dim c1Grp = "Duct - S&D"
+dim c2Num = 2
+dim c2Name = "Stand S&D"
+dim c2Grp = "Duct - S&D"
+function connFind(cnum,cgrp,cnam)
+dim count = 1
+while item.connector[cnum].group <> cgrp
+item.connector[cnum].value = count
+count = count + 1
+end while
+while item.connector[cnum].value <> cnam
+item.connector[cnum].value = count
+count = count + 1
+end while
+end function
+item.connector[c1Num].value = c1Name
+item.connector[c1Num].locked = true
+item.connector[c2Num].value = c2Name
+item.connector[c2Num].locked = true
+if item.connector[c1Num].group <> c1Grp then
+connFind(c1Num,c1Grp,c1Name)
+end if
+if item.connector[c2Num].group <> c2Grp then
+connFind(c2Num,c2Grp,c2Name)
+end if
+REM ==== END S&D STEP DOWN & STAND S&D FUNCTION ====
+end if
+i = i + 1
+end while
